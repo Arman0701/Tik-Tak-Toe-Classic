@@ -1,0 +1,26 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Open-Sans", sans-serif;
+}
+
+input {
+	border: none;
+	outline: none;
+}
+
+.App {
+	width: 100vw;
+	height: 100vh;
+	background: rgb(244,67,124);
+	background: linear-gradient(157deg, rgba(244,67,124,1) 19%, rgba(0,212,255,1) 100%);
+}
+.footer {
+	width: 100vw;
+	position: absolute;
+	bottom: 12px;
+	color: white;
+	text-align: center;
+	cursor: default;
+}
