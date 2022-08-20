@@ -2,6 +2,7 @@
 	width: fit-content;
 	height: fit-content;
 	padding: 20px 35px;
+	margin: 0 15px;
 	border-radius: 10px;
 	background: rgba(255, 255, 255, 0.15);
 	backdrop-filter: blur(5px);
@@ -52,4 +53,11 @@
 .buttonLoaderWrapper {
 	width: 25px;
 	aspect-ratio: 1 / 1;
+}
+.players {
+	padding: 10px 0px;
+	border: 1px solid white;
+	border-radius: 5px;
+	margin-top: 20px;
+	text-align: center;
 }

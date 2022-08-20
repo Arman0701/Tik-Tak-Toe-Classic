@@ -1,62 +1,56 @@
-import { ref, set } from "firebase/database";
-import { useState } from "react";
-import { db, auth } from "../../Firebase/config";
-import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
 import Loader from "../Loader";
 import style from "./StartWindow.module.css";
+import { ref, set } from "firebase/database";
+import { useState } from "react";
+import { db } from "../../Firebase/config";
+import { useNavigate } from "react-router-dom";
+import { v1 as genID } from "uuid";
 
 export default function StartWindow({ gameState }) {
     const [inputValue, setInputValue] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-
-	let userUID;
-
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-			userUID = user.uid
-		}
-		else {
-			// User is signed out
-		}
-	})
+	const navigate = useNavigate();
+	let uuid;
 
     function changeInput(e) {
         setInputValue(e.target.value);
     }
 	function handleKeyDown(e) {
-		if (e.key === "Enter") connect()
+		if (e.key === "Enter") helper()
 	}
 
     async function updateField(field, value) {
         setIsLoading(true);
 
-        set(ref(db, field), value)
+        await set(ref(db, field), value)
 
         setIsLoading(false);
     }
     async function connect() {
         if (!inputValue) {
-            const error = new Error("Nickname field can't be empty.");
-            setErrorMessage(error.message);
-            throw error;
-        } else {
+            setErrorMessage("Nickname field can't be empty.");
+		} else {
 			setErrorMessage('');
             if (!gameState.player1.nick) {
-				await signInAnonymously(auth)
-
-				await updateField('gameState/player1/uid', userUID)
+				uuid = genID()
+				await updateField('gameState/player1/uid', uuid)
 				await updateField('gameState/player1/nick', inputValue)
 				await updateField('gameState/turn', 'player1')
             } else if (!gameState.player2.nick) {
-				await signInAnonymously(auth)
-				
-				await updateField('gameState/player2/uid', userUID)
+				uuid = genID()		
+				await updateField('gameState/player2/uid', uuid)
 				await updateField("gameState/player2/nick", inputValue)
 				await updateField("gameState/started", true)
             }
         }
     }
+
+	async function helper() {
+		await connect();
+		const player = !gameState.player1.nick ? "player1" : "player2"
+		navigate(`/board/${player}/${uuid}`);
+	}
 
     return (
         <>
@@ -84,12 +78,17 @@ export default function StartWindow({ gameState }) {
                         }
                     />
                 </label>
-                <div onClick={connect} className={style.connectButton}>
+                <div onClick={helper} className={style.connectButton}>
                     <p>Connect to playground</p>
                 </div>
                 {errorMessage && (
                     <p className={style.errorMessage}>{errorMessage}</p>
                 )}
+				{
+					gameState.player1?.nick && <div className={style.players}>
+						<p>{gameState.player1.nick} is waiting</p>
+					</div>
+				}
             </div>
         </>
     );
