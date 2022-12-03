@@ -56,43 +56,47 @@ export default function StartWindow({ gameState }) {
 	}
 
     return (
-        <>
-            <Loader trigger={isLoading} />
-            <div className={style.startWindowWrapper}>
-                <p className={style.description}>
-                    Welcome to Tik Tak Toe Classic playground. Just relax and
-                    enjoy the game.
-                </p>
-                <label>
-                    <p>Type your nickname</p>
-                    <input
-                        type="text"
-                        autoFocus
-                        value={inputValue}
-						onKeyDown={handleKeyDown}
-                        onChange={changeInput}
-                        style={
-                            errorMessage
-                                ? {
-									border: "2px solid crimson",
-									borderRadius: "4px",
-                                }
-                                : {}
-                        }
-                    />
-                </label>
-                <button onClick={helper} className={style.connectButton}>
-                    Connect to playground
-                </button>
-                {errorMessage && (
-                    <p className={style.errorMessage}>{errorMessage}</p>
-                )}
-				{
-					gameState.player1?.nick && <div className={style.players}>
-						<p>{gameState.player1.nick} is waiting</p>
-					</div>
-				}
-            </div>
-        </>
+        
+		<div className={style.startWindowWrapper}>
+			<Loader trigger={isLoading} customStyles={{
+				position: "absolute",
+				top: "50%",
+				left: "50%",
+				transform: "translate(-50%, -50%)"
+			}} />
+			<p className={style.description}>
+				Welcome to Tik Tak Toe Classic playground. Just relax and
+				enjoy the game.
+			</p>
+			<label>
+				<p>Type your nickname</p>
+				<input
+					type="text"
+					autoFocus
+					value={inputValue}
+					onKeyDown={handleKeyDown}
+					onChange={changeInput}
+					style={
+						errorMessage
+							? {
+								border: "2px solid crimson",
+								borderRadius: "4px",
+							}
+							: {}
+					}
+				/>
+			</label>
+			<button onClick={helper} className={style.connectButton}>
+				Connect to playground
+			</button>
+			{errorMessage && (
+				<p className={style.errorMessage}>{errorMessage}</p>
+			)}
+			{
+				gameState.player1?.nick && <div className={style.players}>
+					<p>{gameState.player1.nick} is waiting</p>
+				</div>
+			}
+		</div>
     );
 }

@@ -1,10 +1,10 @@
 import loader from "../../assets/icons/loader-animated.svg"
-export default function Loader({trigger}) {
+export default function Loader({trigger, customStyles}) {
 
 	return <>
 		{
 			trigger
-			? <div>
+			? <div style={{...customStyles}}>
 				<img src={loader} alt="loader" />
 			</div>
 			: null

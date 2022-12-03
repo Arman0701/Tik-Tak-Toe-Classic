@@ -14,6 +14,10 @@
 	justify-content: space-between;
 	position: absolute;
 	top: 10px;
+
+	@include BP(mobile) {
+		margin-top: 35px;
+	}
 }
 .boardWrapper {
 	width: 300px;
