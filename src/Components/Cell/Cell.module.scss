@@ -10,7 +10,8 @@
 	font-weight: 700;
 	color: white;
 	transition: 0.33s;
-}
-.cellWrapper:hover {
-	background: transparent;
+	
+	&:hover {
+		background: transparent;
+	}
 }

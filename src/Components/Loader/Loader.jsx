@@ -1,4 +1,4 @@
-import loader from "../../Assets/icons/loader-animated.svg"
+import loader from "../../assets/icons/loader-animated.svg"
 export default function Loader({trigger}) {
 
 	return <>

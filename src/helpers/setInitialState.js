@@ -1,5 +1,5 @@
 import { set, ref } from "firebase/database";
-import { db } from "../Firebase/config";
+import { db } from "../firebase/config";
 
 export const initialState = {
     board: [

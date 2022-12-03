@@ -1,8 +1,11 @@
 import Loader from "../Loader";
-import style from "./StartWindow.module.css";
+
+import style from "./StartWindow.module.scss";
+
 import { ref, set } from "firebase/database";
+import { db } from "../../firebase/config";
+
 import { useState } from "react";
-import { db } from "../../Firebase/config";
 import { useNavigate } from "react-router-dom";
 import { v1 as genID } from "uuid";
 
@@ -78,9 +81,9 @@ export default function StartWindow({ gameState }) {
                         }
                     />
                 </label>
-                <div onClick={helper} className={style.connectButton}>
-                    <p>Connect to playground</p>
-                </div>
+                <button onClick={helper} className={style.connectButton}>
+                    Connect to playground
+                </button>
                 {errorMessage && (
                     <p className={style.errorMessage}>{errorMessage}</p>
                 )}

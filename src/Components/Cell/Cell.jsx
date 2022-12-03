@@ -1,6 +1,8 @@
-import style from "./Cell.module.css";
+import style from "./Cell.module.scss";
+
 import { set, ref } from "firebase/database";
-import { db } from "../../Firebase/config";
+import { db } from "../../firebase/config";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { isWinner } from "../../helpers/isWinner";
 import { useEffect, useMemo } from "react";
@@ -42,7 +44,7 @@ export default function Cell({ item, gameState }) {
 
     return (
         <div className={style.cellWrapper} onClick={setCell}>
-            <p>{item.value}</p>
+            <span>{item.value}</span>
         </div>
     );
 }

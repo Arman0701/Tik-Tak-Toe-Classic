@@ -1,4 +1,4 @@
-import style from './WinnerPage.module.css';
+import style from './WinnerPage.module.scss';
 import { useNavigate, useParams } from "react-router-dom";
 import { useCallback } from 'react';
 import { setInitialState } from '../../helpers/setInitialState';
@@ -25,7 +25,7 @@ export default function WinnerPage({ gameState }) {
 		}
 		</div>
 		<div className={style.buttons}>
-			<div className={style.button} onClick={goTomainMenu}>Main Menu</div>
+			<button className={style.button} onClick={goTomainMenu}>Main Menu</button>
 		</div>
 	</div> 
 

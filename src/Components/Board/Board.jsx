@@ -1,4 +1,4 @@
-import style from './Board.module.css';
+import style from './Board.module.scss';
 import Cell from "../Cell";
 
 export default function Board({ gameState }) {

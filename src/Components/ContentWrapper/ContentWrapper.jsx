@@ -1,11 +1,12 @@
-import style from "./ContentWrapper.module.css";
+import style from "./ContentWrapper.module.scss";
+
 import Board from "../Board";
 import StartWindow from "../StartWindow";
 import Loader from "../Loader";
 import WinnerPage from "../WinnerPage"
 
 import { useEffect, useState } from "react";
-import { db } from "../../Firebase/config";
+import { db } from "../../firebase/config";
 import { onValue, ref } from "firebase/database";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
