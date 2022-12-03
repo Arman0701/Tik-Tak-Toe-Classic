@@ -10,12 +10,12 @@
 
 ## Project images
 
-![pic1](/src/assets/images/pic1.png)
+![pic1](./src/assets/images/pic1.png)
 #### Starting Page
 ---
-![pic2](/src/assets/images/pic2.png)
+![pic2](./src/assets/images/pic2.png)
 #### Game Process
 ---
-![pic3](/src/assets/images/pic3.png)
+![pic3](./src/assets/images/pic3.png)
 #### Winner Page
 ---
